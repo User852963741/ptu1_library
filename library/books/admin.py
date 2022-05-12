@@ -24,6 +24,7 @@ class BookInstanceAdmin(admin.ModelAdmin):
     list_filter = ('status', 'due_back', )
     search_fields = ('id', 'book__title', )
     readonly_fields = ('id', )
+    list_editable = ('status', 'due_back', )
 
     fieldsets = (
         ('Pagrindinė Informacija', {'fields': (
