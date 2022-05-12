@@ -32,6 +32,10 @@ class Book(models.Model):
     def __str__(self):
         return f'{str(self.author)} - {self.title}'
 
+    def display_genres(self):
+        return ', '.join(genre.name for genre in self.genre.all()[:7])
+    display_genres.short_description = 'žanrai'
+
 
 class BookInstance(models.Model):
     id = models.UUIDField('id', primary_key=True, default=uuid.uuid4, help_text='unikalus ID knygos kopijai')
