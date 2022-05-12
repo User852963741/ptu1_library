@@ -16,6 +16,10 @@ class Author(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
+    def get_books_count(self):
+        return self.books.count()
+    get_books_count.short_description = 'knygos'
+
     class Meta:
         ordering = ['last_name', 'first_name']
         verbose_name = 'autorius'
@@ -38,7 +42,7 @@ class Book(models.Model):
 
 
 class BookInstance(models.Model):
-    id = models.UUIDField('id', primary_key=True, default=uuid.uuid4, help_text='unikalus ID knygos kopijai')
+    id = models.UUIDField('id', primary_key=True, default=uuid.uuid4, help_text='unikalus ID knygos kopijai', editable=False)
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True, related_name='book_instances', verbose_name='knyga')
     due_back = models.DateField('grąžinama', null=True, blank=True)
 
