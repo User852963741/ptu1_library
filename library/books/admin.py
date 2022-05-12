@@ -23,6 +23,7 @@ class BookInstanceAdmin(admin.ModelAdmin):
     list_display = ('book', 'status', 'due_back', 'id', )
     list_filter = ('status', 'due_back', )
     search_fields = ('id', 'book__title', )
+    readonly_fields = ('id', )
 
     fieldsets = (
         ('Pagrindinė Informacija', {'fields': (
