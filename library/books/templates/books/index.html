@@ -1,0 +1,13 @@
+{% extends 'books/base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Rajono Biblioteka</h1>
+    <h4>Šiuo metu turime</h4>
+    <ul>
+        <li>Knygų: <strong>{{ num_books }}</strong></li>
+        <li>Knygų kopijų: <strong>{{ num_instances }}</strong></li>
+        <li>Prieinamų kopijų: <strong>{{ num_instances_available }}</strong></li>
+        <li>Autorių: <strong>{{ num_authors }}</strong></li>
+    </ul>
+</div>
+{% endblock content %}

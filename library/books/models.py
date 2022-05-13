@@ -44,7 +44,7 @@ class Book(models.Model):
 class BookInstance(models.Model):
     id = models.UUIDField('id', primary_key=True, default=uuid.uuid4, help_text='unikalus ID knygos kopijai', editable=False)
     book = models.ForeignKey(Book, on_delete=models.SET_NULL, null=True, related_name='book_instances', verbose_name='knyga')
-    due_back = models.DateField('grąžinama', null=True, blank=True)
+    due_back = models.DateField('grąžinama', null=True, blank=True, db_index=True)
 
     LOAN_STATUS = (
         ('a', 'administruojama'),
@@ -53,7 +53,7 @@ class BookInstance(models.Model):
         ('r', 'rezervuota'),
     )
 
-    status = models.CharField('statusas', max_length=1, choices=LOAN_STATUS, blank=True, default='a')
+    status = models.CharField('statusas', max_length=1, choices=LOAN_STATUS, blank=True, default='a', db_index=True)
 
     def __str__(self):
         return f'{str(self.id)} - {self.book.title}'
