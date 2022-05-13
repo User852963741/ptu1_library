@@ -1,7 +1,8 @@
 {% extends 'books/base.html' %}
 {% block content %}
-<div class="container">
+<div class="container"> {# komentaras kaip django tag'as arba kintamasis #}
     <h1>Rajono Biblioteka</h1>
+    {% comment 'jeigu reikia kažką paslėpti' %}šio teksto frontende nebus{% endcomment %}
     <h4>Šiuo metu turime</h4>
     <ul>
         <li>Knygų: <strong>{{ num_books }}</strong></li>
