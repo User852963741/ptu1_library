@@ -17,3 +17,8 @@ def index(request):
     }
 
     return render(request, 'books/index.html', context)
+
+
+def authors(request):
+    authors = Author.objects.all()
+    return render(request, 'books/authors.html', {'authors': authors})

@@ -12,7 +12,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-md navbar-light bg-light">
+        <nav class="navbar navbar-expand-md navbar-dark">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -21,7 +21,7 @@
                     <ul class="navbar-nav mr-auto">{% block navigation %}
                         <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Pradžia</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Visos knygos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Visi autoriai</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'authors' %}">Visi autoriai</a></li>
                     {% endblock navigation %}</ul>
                 </div>
             </div>

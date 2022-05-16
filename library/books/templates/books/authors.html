@@ -1,0 +1,19 @@
+{% extends 'books/base.html' %}
+{% comment %} {% block navigation %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Nauja Pradžia</a></li>
+    {{ block.super }}
+    <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Dar viena Pradžia</a></li>
+{% endblock %} {% endcomment %}
+{% block content %}
+    <div class="container py-3">
+        <h1>Autoriai</h1>
+        <ul class="list-group">
+        {% for author in authors %}
+            <li class="list-group-item list-group-item-action">{{ author }} 
+                <span class="btn btn-dark float-right">knygų: {{ author.get_books_count }}</span></li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}
+
+{% block title %}Autoriai | {{ block.super }}{% endblock title %}
