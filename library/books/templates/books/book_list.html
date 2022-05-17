@@ -9,6 +9,14 @@
                 <span class="badge badge-dark badge-pill ml-1">kopijų: {{ book.book_instances.count }}</span>
                 <span class="badge badge-success badge-pill ml-1">prieinamų: {{ book.get_available_instances }}</span>
             </a>
+            <div class="list-group-item small pt-1 bg-light">
+                {% if book.genre.count > 0 %}
+                    <span class="flex-shrink-1">Žanrai:</span>
+                    {% for genre in book.genre.all %}
+                        <span class="badge badge-primary badge-pill ml-1">{{ genre }}</span>
+                    {% endfor %}
+                {% endif %}
+            </div>
         {% endfor %}
         </div>
     </div>
