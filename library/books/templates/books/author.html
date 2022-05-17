@@ -8,7 +8,7 @@
         <h2>Knygos</h2>
         <div class="list-group">
         {% for book in author.books.all %}
-            <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="#">
+            <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="{% url 'book' book.id %}">
                 <span class="flex-grow-1">{{ book.title }}</span>
                 <span class="badge badge-dark badge-pill ml-1">kopijų: {{ book.book_instances.count }}</span>
                 <span class="badge badge-success badge-pill ml-1">prieinamų: {{ book.get_available_instances }}</span>

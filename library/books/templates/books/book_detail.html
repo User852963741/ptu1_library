@@ -1,0 +1,40 @@
+{% extends 'books/base.html' %}
+{% block content %}
+    <div class="container py-3">
+        <h1>{{ book.title }}</h1>
+        <a href="{% url 'author' book.author.id %}"><h2>{{ book.author }}</h2></a>
+        <div class="d-flex p-2 bg-light small">
+            {% if book.genre.count > 0 %}
+                <span class="flex-shrink-1">Žanrai:</span>
+                {% for genre in book.genre.all %}
+                    <span class="badge badge-pill badge-secondary ml-1">{{ genre }}</span>
+                {% endfor %}
+            {% else %}
+                <span class="flex-shrink-1">Žanrų nerasta</span>
+            {% endif %}
+            <span class="flex-grow-1 ml-2">ISBN: {{ book.isbn }}</span>
+        </div>
+    <p>{{ book.summary }}</p>
+    {% if book.book_instances.count > 0 %}
+        <div class="list-group">
+            {% for instance in book.book_instances.all %}
+            <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                <span class="flex-grow-1">{{ instance.id }}</span>
+                <span class="badge 
+                {% if instance.status == 'g' %}badge-success
+                {% elif instance.status == 'a' %}badge-secondary
+                {% elif instance.status == 'p' %}badge-danger
+                {% else %}badge-warning{% endif %}
+                badge-pill ml-1">{{ instance.get_status_display }}</span>
+                {% if instance.status != 'g' %}
+                <span class="ml-2">bus grąžinta: {{ instance.due_back }}</span>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        Bibliotekoje knygos kopijų kolkas nėra
+    {% endif %}
+    </div>
+{% endblock content %}
+{% block title %}{{ book.title }} | {{ block.super }}{% endblock title %}

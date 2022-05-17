@@ -35,9 +35,22 @@ class BookListView(generic.ListView):
     context_object_name = 'books'
     # queryset = Book.objects.filter(title__icontains=':')[:5:1]
     template_name = 'books/book_list.html'
+    extra_context = {'spalva': '#fc0'}
 
     def get_queryset(self):
         queryset = super().get_queryset()
         if self.request and self.request.GET and self.request.GET.get('search_title'):
             queryset = queryset.filter(title__icontains=self.request.GET.get('search_title'))
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context = {} # this and below line technically repeats the above
+        # context.update({self.context_object_name: self.get_queryset()})
+        context.update({'spalva': 'wheat'}) #overwrites self.extra_context if matched as well
+        return context
+
+
+class BookDetailView(generic.DetailView):
+    model = Book
+    template_name = 'books/book_detail.html'
