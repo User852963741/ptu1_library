@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+from django.views import generic
 from .models import Book, Author, BookInstance, Genre
 
 
@@ -27,3 +28,8 @@ def authors(request):
 def author(request, author_id):
     author = get_object_or_404(Author, pk=author_id)
     return render(request, 'books/author.html', {'author': author})
+
+
+class BookListView(generic.ListView):
+    model = Book
+    template_name = 'books/book_list.html'
