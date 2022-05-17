@@ -32,4 +32,12 @@ def author(request, author_id):
 
 class BookListView(generic.ListView):
     model = Book
+    context_object_name = 'books'
+    # queryset = Book.objects.filter(title__icontains=':')[:5:1]
     template_name = 'books/book_list.html'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        if self.request and self.request.GET and self.request.GET.get('search_title'):
+            queryset = queryset.filter(title__icontains=self.request.GET.get('search_title'))
+        return queryset

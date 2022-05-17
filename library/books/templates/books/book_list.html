@@ -2,8 +2,12 @@
 {% block content %}
     <div class="container py-3">
         <h1>Knygos</h1>
+        <form action="{% url 'books' %}" method="get" class="d-flex mb-3">
+            <input type="text" name="search_title" value="{{ request.GET.search_title }}" placeholder="ieškoti knygų..." class="flex-grow-1">
+            <button type="submit" class="btn btn-secondary ml-1">&#128269; ieškoti</button>
+        </form>
         <div class="list-group">
-        {% for book in book_list %}
+        {% for book in books %}
             <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="{% url 'author' book.author.id %}">
                 <span class="flex-grow-1">{{ book }}</span>
                 <span class="badge badge-dark badge-pill ml-1">kopijų: {{ book.book_instances.count }}</span>
@@ -15,6 +19,8 @@
                     {% for genre in book.genre.all %}
                         <span class="badge badge-primary badge-pill ml-1">{{ genre }}</span>
                     {% endfor %}
+                {% else %}
+                    <span class="flex-shrink-1">Žanrų nerasta</span>
                 {% endif %}
             </div>
         {% endfor %}
