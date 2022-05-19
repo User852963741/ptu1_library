@@ -33,6 +33,7 @@ class Book(models.Model):
     summary = models.TextField('santrauka', max_length=1000, help_text='trumpas knygos aprašymas')
     isbn = models.CharField('ISBN', max_length=13, help_text='13 Simbolių <a href="https://www.isbn-international.org/content/what-isbn" target="_blank">ISBN kodas</a>')
     genre = models.ManyToManyField(Genre, verbose_name='žanras', help_text='išrinkite žanrą(-us) šiai knygai')
+    cover = models.ImageField('viršelis', upload_to='books/covers', null=True, blank=True)
 
     def __str__(self):
         return f'{str(self.author)} - {self.title}'

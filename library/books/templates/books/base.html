@@ -23,8 +23,8 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'books' %}">Visos knygos</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'authors' %}">Visi autoriai</a></li>
                         <li class="nav-item mx-3">
-                            <form action="{% url 'books' %}" method="get" class="mb-3">
-                                <input type="text" name="search" value="{{ request.GET.search }}" placeholder="ieškoti knygų..." class="bg-dark text-light">
+                            <form class="form-inline" action="{% url 'books' %}" method="get" class="mb-3">
+                                <input type="text" name="search" value="{{ request.GET.search }}" placeholder="ieškoti knygų..." class="form-control bg-dark text-light">
                                 <button type="submit" class="btn btn-secondary ml-1">&#128269;</button>
                             </form>
                         </li>

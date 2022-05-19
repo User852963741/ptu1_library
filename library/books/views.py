@@ -43,7 +43,7 @@ class BookListView(generic.ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        if self.request and self.request.GET and self.request.GET.get('search'):
+        if self.request.GET.get('search'):
             search = self.request.GET.get('search')
             queryset = queryset.filter(
                 Q(title__icontains=search) |

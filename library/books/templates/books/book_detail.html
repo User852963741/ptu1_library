@@ -1,4 +1,5 @@
 {% extends 'books/base.html' %}
+{% load static %}
 {% block content %}
     <div class="container py-3">
         <h1>{{ book.title }}</h1>
@@ -14,6 +15,11 @@
             {% endif %}
             <span class="flex-grow-1 ml-2">ISBN: {{ book.isbn }}</span>
         </div>
+    {% if book.cover %}
+        <img style="max-width: 400px;" class="img-fluid img-thumbnail float-right ml-3" src="{{ book.cover.url }}">
+    {% else %}
+        <img style="max-width: 400px;" class="img-fluid img-thumbnail float-right ml-3" src="{% static 'books/img/vibrant-abstract-book-cover.jpg' %}">
+    {% endif %}
     <p>{{ book.summary }}</p>
     {% if book.book_instances.count > 0 %}
         <div class="list-group">
