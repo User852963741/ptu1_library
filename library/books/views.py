@@ -36,6 +36,7 @@ class BookListView(generic.ListView):
     # queryset = Book.objects.filter(title__icontains=':')[:5:1]
     template_name = 'books/book_list.html'
     extra_context = {'spalva': '#fc0'}
+    paginate_by = 4
 
     def get_queryset(self):
         queryset = super().get_queryset()
