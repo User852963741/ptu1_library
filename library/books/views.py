@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator
+from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .models import Book, Author, BookInstance
@@ -18,6 +19,16 @@ def index(request):
     }
 
     return render(request, 'books/index.html', context)
+
+
+def search(request):
+    search = request.GET.get('search')
+    search_results = Book.objects.filter(
+        Q(title__icontains=search) |
+        Q(summary__icontains=search) |
+        Q(author__last_name__istartswith=search)
+    )
+    return render(request, 'books/book_list.html', {'books': search_results, 'search': search, })
 
 
 def authors(request):
@@ -42,8 +53,8 @@ class BookListView(generic.ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        if self.request and self.request.GET and self.request.GET.get('search_title'):
-            queryset = queryset.filter(title__icontains=self.request.GET.get('search_title'))
+        if self.request and self.request.GET and self.request.GET.get('search'):
+            queryset = queryset.filter(title__icontains=self.request.GET.get('search'))
         return queryset
 
     def get_context_data(self, **kwargs):
