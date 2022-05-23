@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import date
 import uuid
 
 
@@ -72,6 +73,12 @@ class BookInstance(models.Model):
 
     def __str__(self):
         return f'{str(self.id)} - {self.book.title}'
+
+    @property
+    def is_overdue(self):
+        if self.due_back and self.due_back < date.today():
+            return True
+        return False
 
     class Meta:
         ordering = ['due_back']

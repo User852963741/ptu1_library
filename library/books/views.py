@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404
@@ -66,3 +67,12 @@ class BookListView(generic.ListView):
 class BookDetailView(generic.DetailView):
     model = Book
     template_name = 'books/book_detail.html'
+
+
+class LoanedBooksByUser(LoginRequiredMixin, generic.ListView):
+    model = BookInstance
+    template_name = 'books/user_book_list.html'
+    paginate_by = 10
+
+    def get_queryset(self):
+        return super().get_queryset().filter(reader=self.request.user).filter(Q(status__exact='p') | Q(status__exact='r')).order_by('due_back')
