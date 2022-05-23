@@ -26,7 +26,7 @@ def index(request):
 
 
 def authors(request):
-    paginator = Paginator(Author.objects.all(), 3)
+    paginator = Paginator(Author.objects.all(), 5)
     page_number = request.GET.get('page')
     authors = paginator.get_page(page_number)
     return render(request, 'books/authors.html', {'authors': authors})

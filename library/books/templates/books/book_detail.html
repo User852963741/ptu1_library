@@ -20,7 +20,7 @@
     {% else %}
         <img style="max-width: 400px;" class="img-fluid img-thumbnail float-right ml-3" src="{% static 'books/img/vibrant-abstract-book-cover.jpg' %}">
     {% endif %}
-    <p>{{ book.summary }}</p>
+    <p>{{ book.summary|safe }}</p>
     {% if book.book_instances.count > 0 %}
         <div class="list-group">
             {% for instance in book.book_instances.all %}

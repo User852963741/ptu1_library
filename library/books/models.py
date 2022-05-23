@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from datetime import date
 import uuid
+from tinymce.models import HTMLField
 
 
 class Genre(models.Model):
@@ -14,7 +15,7 @@ class Genre(models.Model):
 class Author(models.Model):
     first_name = models.CharField('vardas', max_length=100)
     last_name = models.CharField('pavardė', max_length=100)
-    description = models.TextField('apie autorių', max_length=2000, blank=True, null=True)
+    description = HTMLField('apie autorių', blank=True, null=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
@@ -32,7 +33,7 @@ class Author(models.Model):
 class Book(models.Model):
     title = models.CharField('pavadinimas', max_length=250)
     author = models.ForeignKey(Author, on_delete=models.SET_NULL, null=True, related_name='books', verbose_name='autorius')
-    summary = models.TextField('santrauka', max_length=1000, help_text='trumpas knygos aprašymas')
+    summary = HTMLField('santrauka', help_text='trumpas knygos aprašymas')
     isbn = models.CharField('ISBN', max_length=13, help_text='13 Simbolių <a href="https://www.isbn-international.org/content/what-isbn" target="_blank">ISBN kodas</a>')
     genre = models.ManyToManyField(Genre, verbose_name='žanras', help_text='išrinkite žanrą(-us) šiai knygai')
     cover = models.ImageField('viršelis', upload_to='books/covers', null=True, blank=True)
