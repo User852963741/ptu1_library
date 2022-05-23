@@ -20,8 +20,8 @@ class BookAdmin(admin.ModelAdmin):
 
 
 class BookInstanceAdmin(admin.ModelAdmin):
-    list_display = ('book', 'status', 'due_back', 'id', )
-    list_filter = ('status', 'due_back', )
+    list_display = ('book', 'status', 'due_back', 'reader', 'id', )
+    list_filter = ('status', 'due_back', 'reader', )
     search_fields = ('id', 'book__title', )
     readonly_fields = ('id', )
     list_editable = ('status', 'due_back', )
@@ -32,8 +32,8 @@ class BookInstanceAdmin(admin.ModelAdmin):
                 'book', 
             )}),
         ('Prieinamumas', {'fields': (
-                'status', 
-                'due_back', 
+                ('status', 'due_back'), 
+                'reader',
             )}),
     )
 

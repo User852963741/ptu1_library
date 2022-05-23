@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import uuid
 
 
@@ -60,6 +61,14 @@ class BookInstance(models.Model):
     )
 
     status = models.CharField('statusas', max_length=1, choices=LOAN_STATUS, blank=True, default='a', db_index=True)
+    reader = models.ForeignKey(
+        User, 
+        on_delete=models.SET_NULL, 
+        related_name='book_instances', 
+        verbose_name='skaitytojas', 
+        null=True, 
+        blank=True,
+    )
 
     def __str__(self):
         return f'{str(self.id)} - {self.book.title}'
