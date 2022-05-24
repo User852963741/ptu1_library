@@ -11,6 +11,7 @@ from .models import Book, Author, BookInstance
 
 @csrf_protect
 def register(request):
+    context = None
     if request.method == "POST":
         # duomenu surinkimas
         username = request.POST.get('username')
@@ -19,19 +20,21 @@ def register(request):
         password2 = request.POST.get('password2')
         # validuosim forma, tikrindami ar sutampa slaptažodžiai, ar egzistuoja vartotojas
         error = False
-        if password != password2:
-            messages.error(request, 'Slaptažodžiai nesutampa.')
+        if not password or password != password2:
+            messages.error(request, 'Slaptažodžiai nesutampa arba neįvesti.')
             error = True
-        if User.objects.filter(username=username).exists():
-            messages.error(request, f'Vartotojas {username} jau egzistuoja.')
+        if not username or User.objects.filter(username=username).exists():
+            messages.error(request, f'Vartotojas {username} jau egzistuoja arba neįvestas.')
             error = True
-        if User.objects.filter(email=email).exists():
-            messages.error(request, f'Vartotojas su el.praštu {email} jau egzistuoja.')
+        if not email or User.objects.filter(email=email).exists():
+            messages.error(request, f'Vartotojas su el.praštu {email} jau egzistuoja arba neįvestas.')
             error = True
         if error:
             return redirect('register')
         else:
             User.objects.create_user(username=username, email=email, password=password)
+            messages.success(request, f'Vartotojas {username} užregistruotas sėkmingai. Galite prisijungti')
+            return redirect('index')
     return render(request, 'books/register.html')
 
 
