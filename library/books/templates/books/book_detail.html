@@ -32,6 +32,9 @@
             </div>
         </div>
         {% endfor %}
+    {% else %}
+        <div class="alert alert-secondary">Ši knyga kolkas atsiliepimų neturi</div>
+    {% endif %}
     {% if user.is_authenticated %}
     <div class="FieldWrapper">
         <h4>Palikite Atsiliepimą</h4>
@@ -41,9 +44,6 @@
             <input type="submit" value="išsaugoti" class="btn btn-primary">
         </form>
     </div>
-    {% endif %}
-    {% else %}
-        <div class="alert alert-secondary">Ši knyga kolkas atsiliepimų neturi</div>
     {% endif %}
     <h3>Knygos kopijos bibliotekoje</h3>
     {% if book.book_instances.count > 0 %}

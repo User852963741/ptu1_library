@@ -105,7 +105,7 @@ class BookDetailView(generic.DetailView, FormMixin):
     def get_success_url(self):
         return reverse('book', kwargs={'pk': self.object.id })
     
-    def post(self):
+    def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         form = self.get_form()
         if form.is_valid():
