@@ -21,6 +21,21 @@
         <img style="max-width: 400px;" class="img-fluid img-thumbnail float-right ml-3" src="{% static 'books/img/vibrant-abstract-book-cover.jpg' %}">
     {% endif %}
     <p>{{ book.summary|safe }}</p>
+    <h3>Atsiliepimai</h3>
+    {% if book.book_reviews.count > 0%}
+        {% for review in book.book_reviews.all %}
+        <div class="card">
+            <div class="card-body">
+                <span class="muted float-right">{{ review.created_at }}</span>
+                <h5 class="card-title">{{ review.reviewer }}</h5>
+                {{ review.content|safe }}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-secondary">Ši knyga kolkas atsiliepimų neturi</div>
+    {% endif %}
+    <h3>Knygos kopijos bibliotekoje</h3>
     {% if book.book_instances.count > 0 %}
         <div class="list-group">
             {% for instance in book.book_instances.all %}
@@ -39,7 +54,7 @@
             {% endfor %}
         </div>
     {% else %}
-        Bibliotekoje knygos kopijų kolkas nėra
+        <div class="alert alert-secondary">Bibliotekoje knygos kopijų kolkas nėra</div>
     {% endif %}
     </div>
 {% endblock content %}

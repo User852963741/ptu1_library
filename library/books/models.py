@@ -85,3 +85,24 @@ class BookInstance(models.Model):
         ordering = ['due_back']
         verbose_name = 'knygos kopija'
         verbose_name_plural = 'knygos kopijos'
+
+
+class BookReview(models.Model):
+    book = models.ForeignKey(
+        Book, 
+        on_delete=models.CASCADE, 
+        related_name='book_reviews', 
+        verbose_name='knyga'
+    )
+    reviewer = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='book_reviews',
+        verbose_name='skaitytojas',
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    content = HTMLField('atsiliepimas')
+
+    def __str__(self):
+        return f'{self.book} - {self.reviewer} - {self.created_at}'
