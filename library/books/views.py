@@ -3,15 +3,16 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.views import generic
 from django.views.decorators.csrf import csrf_protect
+from django.views.generic.edit import FormMixin
+from .forms import BookReviewForm
 from .models import Book, Author, BookInstance
 
 
 @csrf_protect
 def register(request):
-    context = None
     if request.method == "POST":
         # duomenu surinkimas
         username = request.POST.get('username')
@@ -96,9 +97,27 @@ class BookListView(generic.ListView):
         return context
 
 
-class BookDetailView(generic.DetailView):
+class BookDetailView(generic.DetailView, FormMixin):
     model = Book
     template_name = 'books/book_detail.html'
+    form_class = BookReviewForm
+
+    def get_success_url(self):
+        return reverse('book', kwargs={'pk': self.object.id })
+    
+    def post(self):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        form.instance.book = self.object
+        form.instance.reviewer = self.request.user
+        form.save()
+        return super().form_valid(form)
 
 
 class LoanedBooksByUser(LoginRequiredMixin, generic.ListView):

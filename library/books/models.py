@@ -92,14 +92,17 @@ class BookReview(models.Model):
         Book, 
         on_delete=models.CASCADE, 
         related_name='book_reviews', 
-        verbose_name='knyga'
+        verbose_name='knyga',
+        null=True,
+        blank=True,
     )
     reviewer = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
-        null=True,
         related_name='book_reviews',
         verbose_name='skaitytojas',
+        null=True,
+        blank=True,
     )
     created_at = models.DateTimeField(auto_now_add=True)
     content = HTMLField('atsiliepimas')

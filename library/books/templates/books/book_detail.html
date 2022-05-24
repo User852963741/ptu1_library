@@ -26,7 +26,7 @@
         {% for review in book.book_reviews.all %}
         <div class="card">
             <div class="card-body">
-                <span class="muted float-right">{{ review.created_at }}</span>
+                <span class="text-muted float-right">{{ review.created_at }}</span>
                 <h5 class="card-title">{{ review.reviewer }}</h5>
                 {{ review.content|safe }}
             </div>
