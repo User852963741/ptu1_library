@@ -184,6 +184,8 @@ TINYMCE_USER_CONFIG = {
             visualblocks visualchars | charmap hr
             ''',
     'statusbar': True,
+    'menubar': False,
+    'toolbar2': '',
 }
 
 MESSAGE_TAGS = {

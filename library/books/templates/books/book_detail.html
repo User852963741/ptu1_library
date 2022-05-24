@@ -32,6 +32,16 @@
             </div>
         </div>
         {% endfor %}
+    {% if user.is_authenticated %}
+    <div class="FieldWrapper">
+        <h4>Palikite Atsiliepimą</h4>
+        <form method="post" action="">
+            {% csrf_token%}
+            {{ form.content }}<br/>
+            <input type="submit" value="išsaugoti" class="btn btn-primary">
+        </form>
+    </div>
+    {% endif %}
     {% else %}
         <div class="alert alert-secondary">Ši knyga kolkas atsiliepimų neturi</div>
     {% endif %}
