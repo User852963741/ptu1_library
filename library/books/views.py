@@ -1,42 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
-from django.contrib import messages
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
-from django.views.decorators.csrf import csrf_protect
 from django.views.generic.edit import FormMixin
 from .forms import BookReviewForm
 from .models import Book, Author, BookInstance
-
-
-@csrf_protect
-def register(request):
-    if request.method == "POST":
-        # duomenu surinkimas
-        username = request.POST.get('username')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        password2 = request.POST.get('password2')
-        # validuosim forma, tikrindami ar sutampa slaptažodžiai, ar egzistuoja vartotojas
-        error = False
-        if not password or password != password2:
-            messages.error(request, 'Slaptažodžiai nesutampa arba neįvesti.')
-            error = True
-        if not username or User.objects.filter(username=username).exists():
-            messages.error(request, f'Vartotojas {username} jau egzistuoja arba neįvestas.')
-            error = True
-        if not email or User.objects.filter(email=email).exists():
-            messages.error(request, f'Vartotojas su el.praštu {email} jau egzistuoja arba neįvestas.')
-            error = True
-        if error:
-            return redirect('register')
-        else:
-            User.objects.create_user(username=username, email=email, password=password)
-            messages.success(request, f'Vartotojas {username} užregistruotas sėkmingai. Galite prisijungti')
-            return redirect('index')
-    return render(request, 'books/register.html')
 
 
 def index(request):

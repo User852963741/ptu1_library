@@ -12,6 +12,7 @@
             <div class="media-body">
                 <h2 class="account-heading">{{ user.username }}</h2>
                 <p class="text-secondary">{{ user.email }}</p>
+                <a href="{% url 'edit_profile' %}">Atnaujinti</a>
             </div>
         </div>
     </div>
