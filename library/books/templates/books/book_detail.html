@@ -27,7 +27,14 @@
         <div class="card">
             <div class="card-body">
                 <span class="text-muted float-right">{{ review.created_at }}</span>
-                <h5 class="card-title">{{ review.reviewer }}</h5>
+                <a href="{% url 'view_user_profile' review.reviewer.id %}">
+                    {% if review.reviewer.user_profile.picture %}
+                        <img class="img-fluid rounded-circle mr-2 float-left" style="max-width: 40px;" src="{{ review.reviewer.user_profile.picture.url }}">
+                    {% else %}
+                        <img class="img-fluid rounded-circle mr-2 float-left" style="max-width: 40px;" src="{% static 'user_profile/img/default.png' %}">
+                    {% endif %}
+                    <h5 class="card-title">{{ review.reviewer }}</h5>
+                </a>
                 {{ review.content|safe }}
             </div>
         </div>

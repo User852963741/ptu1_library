@@ -5,14 +5,29 @@
     <div class="content-section">
         <div class="media">
             {% if user.user_profile.picture %}
-                <img class="img-fluid account-img rounded-circle" src="{{ user.user_profile.picture.url }}">
+                <img class="img-fluid account-img rounded-circle mr-2" style="max-width: 300px;" src="{{ user.user_profile.picture.url }}">
             {% else %}
-                <img class="img-fluid account-img rounded-circle" src="{% static 'user_profile/img/default.png' %}">
+                <img class="img-fluid account-img rounded-circle mr-2" style="max-width: 300px;" src="{% static 'user_profile/img/default.png' %}">
             {% endif %}
             <div class="media-body">
                 <h2 class="account-heading">{{ user.username }}</h2>
-                <p class="text-secondary">{{ user.email }}</p>
-                <a href="{% url 'edit_profile' %}">Atnaujinti</a>
+                <h3 class="account-heading">{{ user.first_name }} {{ user.last_name }}</h3>
+                {% if user == request.user %}
+                    <p class="text-secondary">{{ user.email }}</p>
+                    <a href="{% url 'edit_profile' %}">Atnaujinti</a><hr>
+                {% endif %}
+                {% if user.book_reviews %}
+                    Komentarų knygoms: {{ user.book_reviews.count }}
+                    <div class="list-group">
+                        {% for review in user.book_reviews.all %}
+                        <div class="list-group-item">
+                            <span class="float-right text-muted">{{ review.created_at }}</span>
+                            <a href="{% url 'book' review.book.id %}">{{ review.book }}</a>
+                            {{ review.content|safe }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -1,14 +1,19 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.csrf import csrf_protect
 from . forms import UserUpdateForm, UserProfileUpdateForm
 
 
 @login_required
-def view_profile(request):
+def view_my_profile(request):
     return render(request, 'user_profile/view_profile.html')
+
+
+def view_user_profile(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    return render(request, 'user_profile/view_profile.html', {'user': user})
 
 
 @login_required
