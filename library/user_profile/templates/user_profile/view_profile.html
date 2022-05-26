@@ -1,9 +1,14 @@
 {% extends 'books/base.html' %}
+{% load static %}
 {% block content %}
 <div class="container">
     <div class="content-section">
         <div class="media">
-            <img class="account-img rounded-circle" src="{{ user.user_profile.picture.url }}">
+            {% if user.user_profile.picture %}
+                <img class="img-fluid account-img rounded-circle" src="{{ user.user_profile.picture.url }}">
+            {% else %}
+                <img class="img-fluid account-img rounded-circle" src="{% static 'user_profile/img/default.png' %}">
+            {% endif %}
             <div class="media-body">
                 <h2 class="account-heading">{{ user.username }}</h2>
                 <p class="text-secondary">{{ user.email }}</p>
