@@ -1,11 +1,12 @@
 {% extends 'books/base.html' %}
+{% load i18n %}
 {% block content %}
     <div class="container py-3">
-        <h1>Registracija</h1>
+        <h1>{% trans 'Registracija' %}</h1>
         <form method="post">
             {% csrf_token %}
             <div class="form-group">
-                <label for="username">Vartotojo vardas</label>
+                <label for="username">{% trans 'Vartotojo vardas' %}</label>
                 <input name="username" type="text" class="form-control" id="username" aria-describedby="usernameHelp" value="{{ username }}">
                 <small id="usernameHelp" class="form-text text-muted">Iki 150 simbolių.</small>
             </div>

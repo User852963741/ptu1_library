@@ -1,0 +1,159 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-27 13:09+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\books\models.py:10 .\books\models.py:35
+msgid "pavadinimas"
+msgstr "name"
+
+#: .\books\models.py:10
+msgid "įveskite knygos žanrą (pvz. detektyvas)"
+msgstr "enter the genre of a book (example: detective)"
+
+#: .\books\models.py:17
+msgid "vardas"
+msgstr "name"
+
+#: .\books\models.py:18
+msgid "pavardė"
+msgstr "surname"
+
+#: .\books\models.py:19
+msgid "apie autorių"
+msgstr "about author"
+
+#: .\books\models.py:26
+msgid "knygos"
+msgstr "books"
+
+#: .\books\models.py:30 .\books\models.py:36
+msgid "autorius"
+msgstr "author"
+
+#: .\books\models.py:31
+msgid "autoriai"
+msgstr "authors"
+
+#: .\books\models.py:37
+msgid "santrauka"
+msgstr "summary"
+
+#: .\books\models.py:37
+msgid "trumpas knygos aprašymas"
+msgstr "short book description"
+
+#: .\books\models.py:38
+msgid "13 Simbolių"
+msgstr "13 symbols"
+
+#: .\books\models.py:38
+msgid "ISBN kodas"
+msgstr "ISBN code"
+
+#: .\books\models.py:39
+msgid "žanras"
+msgstr "genre"
+
+#: .\books\models.py:40
+msgid "viršelis"
+msgstr "cover"
+
+#: .\books\models.py:47
+msgid "žanrai"
+msgstr "genres"
+
+#: .\books\models.py:51
+msgid "prieinamų kopijų kiekis"
+msgstr "Available book instances"
+
+#: .\books\models.py:55
+msgid "id"
+msgstr "id"
+
+#: .\books\models.py:55
+msgid "unikalus ID knygos kopijai"
+msgstr "unique book copy ID"
+
+#: .\books\models.py:56 .\books\models.py:96
+msgid "knyga"
+msgstr "book"
+
+#: .\books\models.py:57
+msgid "grąžinama"
+msgstr "to be returned"
+
+#: .\books\models.py:60
+msgid "administruojama"
+msgstr "managed"
+
+#: .\books\models.py:61
+msgid "paimta"
+msgstr "taken"
+
+#: .\books\models.py:62
+msgid "galima paimti"
+msgstr "available"
+
+#: .\books\models.py:63
+msgid "rezervuota"
+msgstr "rezerved"
+
+#: .\books\models.py:66
+msgid "statusas"
+msgstr "status"
+
+#: .\books\models.py:71 .\books\models.py:104
+msgid "skaitytojas"
+msgstr "reader"
+
+#: .\books\models.py:87
+msgid "knygos kopija"
+msgstr "Book instances"
+
+#: .\books\models.py:88
+msgid "knygos kopijos"
+msgstr "Book instances"
+
+#: .\books\templates\books\index.html:5
+msgid "Rajono Biblioteka"
+msgstr "Local Library"
+
+#: .\books\templates\books\index.html:6
+msgid "Šiuo metu turime"
+msgstr "We now have these"
+
+#: .\books\templates\books\index.html:8
+msgid "Knygų"
+msgstr "Books"
+
+#: .\books\templates\books\index.html:9
+msgid "Knygų kopijų"
+msgstr "Book instances"
+
+#: .\books\templates\books\index.html:10
+msgid "Prieinamų kopijų"
+msgstr "Available book instances"
+
+#: .\books\templates\books\index.html:11
+msgid "Autorių"
+msgstr "Authors"
+
+#: .\books\templates\books\index.html:12
+msgid "Apsilankymų čia šios sesijos metu"
+msgstr "Visits during your session"

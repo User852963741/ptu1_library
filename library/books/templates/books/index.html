@@ -1,15 +1,15 @@
 {% extends 'books/base.html' %}
+{% load i18n %}
 {% block content %}
 <div class="container"> {# komentaras kaip django tag'as arba kintamasis #}
-    <h1>Rajono Biblioteka</h1>
-    {% comment 'jeigu reikia kažką paslėpti' %}šio teksto frontende nebus{% endcomment %}
-    <h4>Šiuo metu turime</h4>
+    <h1>{% trans 'Rajono Biblioteka' %}</h1>
+    <h4>{% trans 'Šiuo metu turime' %}</h4>
     <ul>
-        <li>Knygų: <strong>{{ num_books }}</strong></li>
-        <li>Knygų kopijų: <strong>{{ num_instances }}</strong></li>
-        <li>Prieinamų kopijų: <strong>{{ num_instances_available }}</strong></li>
-        <li>Autorių: <strong>{{ num_authors }}</strong></li>
-        <li>Apsilankymų čia šios sesijos metu: <strong>{{ num_visits }}</strong></li>
+        <li>{% trans 'Knygų' %}: <strong>{{ num_books }}</strong></li>
+        <li>{% trans 'Knygų kopijų' %}: <strong>{{ num_instances }}</strong></li>
+        <li>{% trans 'Prieinamų kopijų' %}: <strong>{{ num_instances_available }}</strong></li>
+        <li>{% trans 'Autorių' %}: <strong>{{ num_authors }}</strong></li>
+        <li>{% trans 'Apsilankymų čia šios sesijos metu' %}: <strong>{{ num_visits }}</strong></li>
     </ul>
 </div>
 {% endblock content %}

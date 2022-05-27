@@ -1,0 +1,54 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-27 13:09+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\user_profile\models.py:12
+msgid "vartotojas"
+msgstr "user"
+
+#: .\user_profile\templates\user_profile\register.html:5
+msgid "Registracija"
+msgstr "Registration"
+
+#: .\user_profile\templates\user_profile\register.html:9
+msgid "Vartotojo vardas"
+msgstr "username"
+
+#: .\user_profile\views.py:28
+msgid "Vartotojo {} duomenys atnaujinti"
+msgstr "User {} data has been updated"
+
+#: .\user_profile\views.py:51
+msgid "Slaptažodžiai nesutampa arba neįvesti."
+msgstr "Passwords do not match or not entered."
+
+#: .\user_profile\views.py:54
+msgid "Vartotojas {} jau egzistuoja arba neįvestas."
+msgstr ""
+"User with username {} already exists or username is not entered."
+
+#: .\user_profile\views.py:57
+msgid "Vartotojas su el.praštu {} jau egzistuoja arba neįvestas."
+msgstr "User with email {} already exists or email is not entered."
+
+#: .\user_profile\views.py:63
+msgid "Vartotojas {} užregistruotas sėkmingai. Galite prisijungti"
+msgstr ""
+"User with username {} has been registered successfully. You can "
+"login now."

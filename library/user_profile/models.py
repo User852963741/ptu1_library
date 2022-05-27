@@ -1,5 +1,6 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+from django.utils.translation import gettext_lazy as _
 from PIL import Image
 
 
@@ -8,7 +9,7 @@ class UserProfile(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='user_profile',
-        verbose_name='vartotojas',
+        verbose_name=_('vartotojas'),
     )
     picture = models.ImageField('nuotrauka', upload_to='user_profile/pictures', null=True, blank=True)
 
