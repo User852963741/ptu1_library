@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.views.generic.edit import FormMixin
 from django.urls import reverse, reverse_lazy
-from .forms import BookReviewForm
+from .forms import BookReviewForm, UserBookForm
 from .models import Book, Author, BookInstance
 
 
@@ -107,9 +107,10 @@ class BookByUserDetailView(LoginRequiredMixin, generic.DetailView):
 
 class BookByUserCreateView(LoginRequiredMixin, generic.CreateView):
     model = BookInstance
-    fields = ('book', 'due_back', )
+    # fields = ('book', 'due_back', )
     success_url = reverse_lazy('my_books')
     template_name = 'books/user_book_form.html'
+    form_class = UserBookForm
 
     def get_initial(self):
         initial = super().get_initial()
@@ -125,14 +126,25 @@ class BookByUserCreateView(LoginRequiredMixin, generic.CreateView):
 
 class BookByUserUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = BookInstance
-    fields = ('book', 'due_back', )
+    # fields = ('book', 'due_back', )
     success_url = reverse_lazy('my_books')
     template_name = 'books/user_book_form.html'
+    form_class = UserBookForm
 
     def form_valid(self, form):
         form.instance.reader = self.request.user
         form.instance.status = 'p'
         return super().form_valid(form)
+
+    def test_func(self):
+        book_instance = self.get_object()
+        return book_instance.reader == self.request.user
+
+
+class BookByUserDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+    model = BookInstance
+    success_url = reverse_lazy('my_books')
+    template_name = 'books/user_book_delete.html'
 
     def test_func(self):
         book_instance = self.get_object()

@@ -1,0 +1,20 @@
+{% extends 'books/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container py-3">
+        <h1>Priduodam knygos kopiją</h1>
+        <form method="post" action="">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                Ar tikrai norit priduoti knygos {{ object.book }} kopiją {{ object.id }}?
+            </fieldset>
+            <fieldset class="form-group">
+                <button class="btn btn-danger" type="submit">TAIP</button>
+                <a class="btn btn-success" href="{% url 'my_book' object.id %}">NE, atgal</a>
+                <br>* šis veiksmas neleidžia tiesiog pasisąvinti arba sunaikinti knygos kopijos!
+            </fieldset>
+        </form>
+    </div>
+{% endblock content %}
+    
+{% block title %}Trinama knygos kopija | {{ block.super }}{% endblock title %}

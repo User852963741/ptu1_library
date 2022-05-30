@@ -10,6 +10,9 @@
             </fieldset>
             <fieldset class="form-group">
                 <button class="btn btn-primary" type="submit">Pasiimti/Atnaujinti</button>
+                {% if object %}
+                    <a class="btn btn-danger" href="{% url 'my_book_delete' object.id %}">priduoti</a>
+                {% endif %}
             </fieldset>
         </form>
     </div>
