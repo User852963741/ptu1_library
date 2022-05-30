@@ -1,0 +1,18 @@
+{% extends 'books/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="container py-3">
+        <h1>Pasiimu naują knygos kopiją</h1>
+        <form method="post" action="">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ form|crispy }}
+            </fieldset>
+            <fieldset class="form-group">
+                <button class="btn btn-primary" type="submit">Paimti</button>
+            </fieldset>
+        </form>
+    </div>
+{% endblock content %}
+    
+{% block title %}Nauja knygos kopija | {{ block.super }}{% endblock title %}

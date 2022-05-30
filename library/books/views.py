@@ -1,9 +1,11 @@
+from datetime import date, timedelta
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.views.generic.edit import FormMixin
+from django.urls import reverse, reverse_lazy
 from .forms import BookReviewForm
 from .models import Book, Author, BookInstance
 
@@ -101,3 +103,20 @@ class LoanedBooksByUser(LoginRequiredMixin, generic.ListView):
 class BookByUserDetailView(LoginRequiredMixin, generic.DetailView):
     model = BookInstance
     template_name = 'books/user_book_detail.html'
+
+
+class BookByUserCreateView(LoginRequiredMixin, generic.CreateView):
+    model = BookInstance
+    fields = ('book', 'due_back', )
+    success_url = reverse_lazy('my_books')
+    template_name = 'books/user_book_form.html'
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['due_back'] = date.strftime(date.today() + timedelta(days=14), '%Y-%m-%d')
+        return initial
+
+    def form_valid(self, form):
+        form.instance.reader = self.request.user
+        form.instance.status = 'p'
+        return super().form_valid(form)
