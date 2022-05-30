@@ -4,7 +4,7 @@
         <h1>Mano {{ object.book }} knygos kopija</h1>
         <span>ID: {{ object.id }}</span>
         <div class="list-group">
-            <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="{% url 'book' object.book.id %}">
+            <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="{% url 'my_book_update' object.id %}">
                 <span class="flex-grow-1">{{ object.book }}</span>
                 <span class="badge badge-light badge-pill ml-1">{{ object.get_status_display }}</span>
                 <span class="badge {% if object.is_overdue %}badge-danger{% else %}badge-dark{% endif %} badge-pill ml-1">grąžinti reikia: {{ object.due_back }}</span>
