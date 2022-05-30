@@ -51,6 +51,7 @@
             <input type="submit" value="išsaugoti" class="btn btn-primary">
         </form>
     </div>
+    <a class="mt-1 btn btn-primary" href="{% url 'my_book_new' %}?book_id={{ book.id }}">Pasiimti kopiją skaitymui</a>
     {% endif %}
     <h3>Knygos kopijos bibliotekoje</h3>
     {% if book.book_instances.count > 0 %}

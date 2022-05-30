@@ -113,6 +113,7 @@ class BookByUserCreateView(LoginRequiredMixin, generic.CreateView):
 
     def get_initial(self):
         initial = super().get_initial()
+        initial['book'] = self.request.GET.get('book_id')
         initial['due_back'] = date.strftime(date.today() + timedelta(days=14), '%Y-%m-%d')
         return initial
 
