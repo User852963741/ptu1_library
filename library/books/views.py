@@ -96,3 +96,8 @@ class LoanedBooksByUser(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return super().get_queryset().filter(reader=self.request.user).filter(Q(status__exact='p') | Q(status__exact='r')).order_by('due_back')
+
+
+class BookByUserDetailView(LoginRequiredMixin, generic.DetailView):
+    model = BookInstance
+    template_name = 'books/user_book_detail.html'
