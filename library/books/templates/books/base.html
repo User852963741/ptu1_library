@@ -1,5 +1,5 @@
-<!DOCTYPE html>{% load static i18n %}{% get_current_language as LANGUGAGE_CODE %}
-<html lang="{{ LANGUGAGE_CODE }}">
+<!DOCTYPE html>{% load static i18n %}{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,7 +46,7 @@
                                 <select class="form-control bg-dark text-light" name="language" onchange="this.form.submit()">
                                     {% get_available_languages as LANGUAGES %}
                                     {% for lang in LANGUAGES %}
-                                        <option value="{{ lang.0 }}" {% if lang.0 == LANGUGAGE_CODE %}selected="selected"{% endif %}>
+                                        <option value="{{ lang.0 }}" {% if lang.0 == LANGUAGE_CODE %}selected="selected"{% endif %}>
                                             {{ lang.1 }}
                                         </option>
                                     {% endfor %}
