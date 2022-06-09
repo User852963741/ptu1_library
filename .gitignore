@@ -7,3 +7,4 @@ library/static/**
 media/**
 **/media/**
 dbdata/
+library/data/
