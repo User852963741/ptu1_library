@@ -6,3 +6,4 @@ db.sqlite3
 library/static/**
 media/**
 **/media/**
+dbdata/
