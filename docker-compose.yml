@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  dev:
+    build: .
+    image: library:dev
+    container_name: library.dev
+    tty: true
+    stdin_open: true
+    restart: always
+    ports: 
+      - 8000:8000
+    volumes:
+      - ./library:/app
+    command: >
+      bash -c "python manage.py migrate &&
+               python manage.py collectstatic --noinput &&
+               gunicorn library.wsgi --bind 0.0.0.0:8000"
+  nginx:
+    build: ./nginx/
+    image: nginx:library
+    container_name: library.nginx
+    restart: always
+    ports:
+      - 80:80
+    links:
+      - dev:library
+    volumes:
+      - ./library/static:/app/static
+      - ./library/media:/app/media

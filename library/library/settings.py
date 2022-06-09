@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-omf-(@!#c=!f!ap07+xvn-p^x57%b_&rocjd!#r!ysb$6e345v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['library.local', 'localhost', '127.0.0.1']
 
 
 # Application definition
